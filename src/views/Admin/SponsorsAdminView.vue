@@ -10,16 +10,13 @@
     <SponsorComponent v-for="(item, index) in sponsorItems" :key="index" :Logo="item.Logo" :Titlu="item.Titlu"
       :Descriere="item.descriere"></SponsorComponent>
   </div>
-  <Footer></Footer>
 </template>
 
 <script>
-import Footer from '@/components/General/Footer.vue';
 import SponsorComponent from '@/components/SponsorComponent.vue';
 
 export default {
   components: {
-    Footer,
     SponsorComponent
   },
   name: 'TableComponentSponsor',

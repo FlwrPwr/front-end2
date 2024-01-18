@@ -4,17 +4,14 @@
     <router-view />
   </div>
   <div>
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Navbar from "../../components/General/NavBar.vue";
-import Footer from "../../components/General/Footer.vue";
 export default {
   name: "LoggedIdLayout",
   components: {
-    Footer,
     Navbar,
   },
   data() {

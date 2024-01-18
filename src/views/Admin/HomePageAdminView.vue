@@ -40,7 +40,6 @@ import Clasament from '@/components/Clasament.vue';
 import ProgramMeciuri from '@/components/ProgramMeciuri.vue';
 import NewsBox from '@/components/NewsBox.vue';
 import Carousel from '@/components/CarouselPlayers.vue';
-import Footer from '@/components/General/Footer.vue';
 
 export default {
   name: 'HomePageView',
@@ -50,7 +49,6 @@ export default {
     ProgramMeciuri,
     NewsBox,
     Carousel,
-    Footer,
   },
   data() {
     return {

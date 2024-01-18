@@ -37,7 +37,6 @@ import MatchesCategory from "@/components/Matches/MatchesCategory.vue";
 export default {
   components: {
     Navbar,
-    Footer,
     MatchesCategory,
   },
   data() {
