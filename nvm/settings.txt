@@ -1,0 +1,4 @@
+root: D:\CODE\IP-Project\frontend\nvm
+path: C:\Program Files\nodejs
+root: C:\Users\Florea Tudor - Dorin\Desktop\IP\frontend\nvm
+path: C:\Program Files\nodejs
