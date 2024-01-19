@@ -4,25 +4,19 @@
       <img src="@/assets/images/clubDetailsImage.png" class="image" alt="Club Details Image" />
     </div>
     <div class="subtitle-row">
-      <div
-        class="subtitle"
-        :class="{ active: selectedSubtitle === 'clubDetails' }"
-        @click="showClubDetails"
-      >
+      <div class="subtitle" :class="{ active: selectedSubtitle === 'clubDetails' }" @click="showClubDetails">
         Detalii club
       </div>
-      <div
-        class="subtitle"
-        :class="{ active: selectedSubtitle === 'trophys' }"
-        @click="showTrophys"
-      >
+      <div class="subtitle" :class="{ active: selectedSubtitle === 'trophys' }" @click="showTrophys">
         Trofee
       </div>
     </div>
     <div class="m-5">
       <div v-if="selectedSubtitle === 'clubDetails'">
         <div class="row align-items-center">
-          <div class="col ms-5 ps-5"><h2>Detalii club</h2></div>
+          <div class="col ms-5 ps-5">
+            <h2>Detalii club</h2>
+          </div>
           <div class="col-auto me-5 pe-5">
             <button class="btn btn-success" @click="SaveChanges">Save changes</button>
           </div>
@@ -33,13 +27,15 @@
       </div>
       <div v-if="selectedSubtitle === 'trophys'">
         <div class="trophysContent">
-          <div class="trophysTitle">Perfomante interne</div>
+          <div class="trophysTitle">
+            Perfomante interne
+          </div>
           <div class="trophysBoxContainer">
-            <div class="trophysBox">
-              <ClubDetailsTrophys
-                :trophyImage="trophyImage"
-                :trophyYear="trophyYear"
-              ></ClubDetailsTrophys>
+            <div class="trophysBox" v-for="(trophy, index) in trophies" :key="index">
+              <AdminClubDetailsTrophys :trophyImage="trophy.image" :trophyYear="trophy.year"></AdminClubDetailsTrophys>
+            </div>
+            <div class="addTrophysButton">
+              +
             </div>
           </div>
         </div>
@@ -49,23 +45,22 @@
 </template>
 
 <script>
-import ClubDetailsTrophys from "@/components/ClubDetailsTrophys.vue";
+import AdminClubDetailsTrophys from "../../components/AdminClubDetailsTrophys.vue";
 import Editor from "../../components/News/Editor.vue";
 export default {
   components: {
-    ClubDetailsTrophys,
+    AdminClubDetailsTrophys,
     Editor,
   },
   data() {
-    return {
-      selectedSubtitle: "clubDetails",
-      trophyImage: "@/assets/images/search_icon.png",
-      trophyYear: "2022",
-      details: {
-        Content: "",
-      },
-    };
-  },
+        return {
+            selectedSubtitle: 'trophys',
+            trophies: [
+                { image: "https://source.unsplash.com/random/200x200?sig=6", year: "2022" },
+                { image: "https://source.unsplash.com/random/200x200?sig=5", year: "2021" },
+            ],
+        };
+    },
   methods: {
     showClubDetails() {
       this.selectedSubtitle = "clubDetails";
@@ -106,16 +101,19 @@ export default {
   height: 100%;
   object-fit: cover;
 }
+
 .background-image {
   width: 100%;
   height: 100%;
   z-index: -1;
   background-color: red;
 }
+
 .club-details {
   height: auto;
   padding-top: 6%;
 }
+
 .subtitle-row {
   margin-top: 2vh;
   height: 10vh;
@@ -153,27 +151,41 @@ export default {
   margin-right: 15vw;
   margin-bottom: 10vh;
 }
-
 .trophysContent {
-  margin-bottom: 10vh;
-  background-color: #e7f2fd;
-  height: 60vh;
-  width: 100%;
-  padding-left: 20vh;
+    margin-bottom: 10vh;
+    background-color: #e7f2fd;
+    height: 60vh;
+    width: 100%;
+    padding-left: 20vh;
 }
 
 .trophysTitle {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: 10vh;
-  padding-top: 3vh;
-  padding-left: 2vw;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10vh;
+    padding-top: 3vh;
+    padding-left: 2vw;
 }
 
-.trophysContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+.trophysBoxContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.addTrophysButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 5rem;
+    font-weight: bold;
+    background-color: #ccc;
+    margin-left: 2vw;
+    height: 10vh;
+    width: 5vw;
+    border-radius: 100%;
+    padding-bottom: 2vh;
 }
 </style>

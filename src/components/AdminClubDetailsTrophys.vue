@@ -2,6 +2,10 @@
     <div class="trophy-box">
         <img :src="trophyImage" alt="Trophy Image" class="trophy-image" />
         <div class="trophy-year">{{ trophyYear }}</div>
+        <div class="trophy-actions">
+            <button class="action-button">Edit</button>
+            <button class="action-button">Delete</button>
+        </div>
     </div>
 </template>
 
@@ -39,10 +43,23 @@ export default {
 }
 
 .trophy-year {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2vh;
-    margin-top: 4vh;
 }
 
+.trophy-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-button {
+    padding: 5px 10px;
+    background-color: #ccc;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-inline: 5px;
+}
 </style>
