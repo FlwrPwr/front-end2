@@ -1,4 +1,6 @@
 <template>
+  <div v-if="$store.state.loader" class="page-loader-background"></div>
+  <div v-if="$store.state.loader" class="page-loader-middle"></div>
   <router-view />
 </template>
 

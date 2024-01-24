@@ -60,7 +60,7 @@ export default {
         },
       ],
       menResultsData: [
-       {
+        {
           stadion: "Stadion Name 1",
           ora: "Match Time 1",
           team1Emblem: "../../assets/images/emblem.jpg",
@@ -77,10 +77,10 @@ export default {
           currentDate: "March 2023",
           team1Score: 1,
           team2Score: 2,
-        }
+        },
       ],
       juvenilFixtureData: [
-      {
+        {
           isHome: true,
           stadion: "Stadion Juvenil 2",
           ora: "Match Juvenil 2",
@@ -90,7 +90,7 @@ export default {
         },
       ],
       juvenilResultsData: [
-      {
+        {
           stadion: "Stadion Juvenil 1",
           ora: "Match Juvenil 1",
           team1Emblem: "../../assets/images/emblem.jpg",
@@ -100,16 +100,16 @@ export default {
           team2Score: 2,
         },
       ],
-      selectedTeam: 'men', 
+      selectedTeam: "men",
       isAdmin: true,
     };
   },
   computed: {
     selectedTeamFixtureData() {
-      return this.selectedTeam === 'men' ? this.menFixtureData : this.juvenilFixtureData;
+      return this.selectedTeam === "men" ? this.menFixtureData : this.juvenilFixtureData;
     },
     selectedTeamResultsData() {
-      return this.selectedTeam === 'men' ? this.menResultsData : this.juvenilResultsData;
+      return this.selectedTeam === "men" ? this.menResultsData : this.juvenilResultsData;
     },
   },
   methods: {
@@ -142,16 +142,15 @@ export default {
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-  opacity: 1; 
+  opacity: 1;
 }
 
 .subtitle.selected {
   border-bottom: 3px solid red;
-  opacity: 1; 
+  opacity: 1;
 }
 
 .teams .subtitle:not(.selected) {
-  opacity: 0.5; 
+  opacity: 0.5;
 }
-
 </style>
