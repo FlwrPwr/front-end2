@@ -1,17 +1,5 @@
 <template>
   <div id="app">
-<<<<<<< Updated upstream
-    <div class="userActual">
-
-    </div>
-    <div class="baraTitlu">
-      <div class="itemTitlu">Users</div>
-      <button class="buttonTitlu">Add user</button>
-      <div class="userActual">
-        <div class="userInfo">
-          <span>{{ currentUser.name }}</span> 
-          <span>{{ currentUser.role }}</span>
-=======
     <div class="userActual"></div>
     <div class="baraTitlu">
       <div class="itemTitlu">Users</div>
@@ -20,16 +8,10 @@
         <div class="userInfo">
           <span>{{ currentUser.FirstName }} {{ currentUser.LastName }}</span>
           <span>{{ currentUser.Role }}</span>
->>>>>>> Stashed changes
         </div>
         <img src="../../assets/images/emblem.jpg" alt="User Icon" class="userIcon" />
       </div>
     </div>
-<<<<<<< Updated upstream
-    <div class="filters">
-      <input type="text" placeholder="Search" v-model="searchTerm" @input="searchUsers">
-      <select class="optiuniFiltru" v-model="selectedRole">
-=======
     <div class="options row align-items-center mb-5">
       <div class="col-6">
         <input
@@ -66,43 +48,18 @@
         />
       </div>
       <!-- <select v-model="selectedRole">
->>>>>>> Stashed changes
         <option v-for="role in uniqueRoles" :key="role">{{ role }}</option>
       </select>
       <select class="optiuniFiltru" v-model="selectedStatus">
         <option v-for="status in uniqueStatus" :key="status">{{ status }}</option>
-<<<<<<< Updated upstream
-      </select>
-    </div>
-    <div class="baraTabel">
-      <div class="itemBaraTabel" style="margin-left: 1vw;">Name</div>
-=======
       </select> -->
     </div>
     <div class="baraTabel">
       <div class="itemBaraTabel" style="margin-left: 1vw">Name</div>
->>>>>>> Stashed changes
       <div class="itemBaraTabel" style="width: 80%">Email</div>
       <div class="itemBaraTabel">Phone number</div>
       <div class="itemBaraTabel" style="width: 30%">Active</div>
       <div class="itemBaraTabel" style="width: 30%">Role</div>
-<<<<<<< Updated upstream
-      <div class="itemBaraTabel" style="width: 40%; margin-right: 13vw;">Email status</div>
-    </div>
-    <div class="componentaTabel">
-      <div class="linieTabel" v-for="(user, index) in filteredUsers" :key="user.email">
-        <div class="itemTabel" style="width:16.8vw; margin-left: 1vw;">{{ user.name }}</div>
-        <div class="itemTabel" style="width:19vw;">{{ user.email }}</div>
-        <div class="itemTabel" style="width:16.8vw;">{{ user.phone }}</div>
-        <div class="itemTabel" style="width:7vw;">{{ user.active ? 'Active' : 'Inactive' }}</div>
-        <div class="itemTabel" style="width:7.5vw;">{{ user.role }}</div>
-        <div class="itemTabel" style="width:8vw;">{{ user.verifiedEmail ? 'Verified' : 'Not Verified' }}</div>
-        <div class="itemTabel" style="width:6vw;  justify-content: center;">
-          <img src="../../assets/images/edit_icon.png" alt="User Icon" style="width: 24px; height: 22px;" />
-        </div>
-        <div class="itemTabel" style="width:6vw; justify-content: center;">
-          <img src="../../assets/images/trash_icon.png" alt="User Icon" class="actionIcon" />
-=======
       <div class="itemBaraTabel" style="width: 40%; margin-right: 13vw">Email status</div>
     </div>
     <div class="componentaTabel">
@@ -145,64 +102,10 @@
               @click="UpdateUserAccess(user.Id)"
             />
           </div>
->>>>>>> Stashed changes
         </div>
       </div>
     </div>
   </div>
-<<<<<<< Updated upstream
-</template>
-
-<script>
-export default {
-  name: 'UserAdminView',
-  data() {
-    return {
-      users: [
-        {
-          name: 'Florea Tudor - Dorin',
-          email: 'floreatudordorin@gmail.com',
-          phone: '+40747294111',
-          active: true,
-          role: 'Admin',
-          verifiedEmail: true
-        },
-        {
-          name: 'Pentilescu Emanuel',
-          email: 'emanuel.pentilescu@gmail.com',
-          phone: '+40747239646',
-          active: true,
-          role: 'Admin',
-          verifiedEmail: true
-        },
-        {
-          name: 'Dragoi Marius Andrei',
-          email: 'andrei.dragoi@gmail.com',
-          phone: '+40747111134',
-          active: false,
-          role: 'Editor',
-          verifiedEmail: false
-        },
-      ],
-      currentUser: {
-        name: 'Florea Tudor - Dorin',
-        role: 'Admin'
-      },
-      searchTerm: '',
-      selectedRole: '',
-      selectedStatus: '',
-    };
-  },
-  computed: {
-    filteredUsers() {
-      return this.users
-        .filter(user =>
-          (this.selectedRole ? user.role === this.selectedRole : true) &&
-          (this.selectedStatus
-            ? (this.selectedStatus === 'Active' ? user.active : !user.active)
-            : true) &&
-          user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-=======
   <AddUserModal ref="addUser" @save="CreateUser"></AddUserModal>
   <EditUserModal ref="editUser" @edit="UpdateUser" :user="selectedUser"></EditUserModal>
 </template>
@@ -338,7 +241,6 @@ export default {
                 : !user.active
               : true) &&
             user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
->>>>>>> Stashed changes
         )
         .sort((a, b) => {
           if (a.name.toLowerCase().startsWith(this.searchTerm.toLowerCase())) return -1;
@@ -346,18 +248,6 @@ export default {
           return 0;
         });
     },
-<<<<<<< Updated upstream
-    uniqueRoles() {
-      return Array.from(new Set(this.users.map(user => user.role)));
-    },
-    uniqueStatus() {
-      return Array.from(new Set(this.users.map(user => (user.active ? 'Active' : 'Inactive'))));
-    },
-  },
-  methods: {
-    searchUsers() {
-    },
-=======
     currentUser() {
       return this.$store.state.auth.user;
     },
@@ -370,14 +260,11 @@ export default {
   },
   created() {
     this.GetUsers();
->>>>>>> Stashed changes
   },
 };
 </script>
 
 <style scoped>
-<<<<<<< Updated upstream
-=======
 .modal-content .custom-multiselect .multiselect__placeholder {
   font-size: 16px;
   padding-top: 0px;
@@ -531,60 +418,30 @@ export default {
   padding: 0px 15px;
   margin: 7px 0px;
 }
->>>>>>> Stashed changes
 #app {
   margin-top: 180px;
   font-family: Arial, sans-serif;
   height: auto;
 }
 
-<<<<<<< Updated upstream
-.userInfo{
-=======
 .userInfo {
->>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
   font-weight: bold;
   font-size: 1.1rem;
   padding-block: 1.5vh;
-<<<<<<< Updated upstream
-  padding-inline:1vw;
-=======
   padding-inline: 1vw;
->>>>>>> Stashed changes
   border-left: 1px solid grey;
 }
 
 .userIcon {
-<<<<<<< Updated upstream
-  width: 75px; 
-  height: 75px; 
-=======
   width: 75px;
   height: 75px;
->>>>>>> Stashed changes
   margin-right: 5px;
   margin-top: 2.5px;
   border-radius: 100%;
 }
 
-<<<<<<< Updated upstream
-
-.userActual
-{
-  display: flex;
-  flex-direction: row;
-  margin-right:2vw;
-}
-
-.linieTabel {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid grey;
-  height: 8vh;
-  justify-content: left;
-=======
 .userActual {
   display: flex;
   flex-direction: row;
@@ -594,7 +451,6 @@ export default {
 .linieTabel {
   border-bottom: 1px solid grey;
   height: 8vh;
->>>>>>> Stashed changes
 }
 
 .componentaTabel {
@@ -605,14 +461,6 @@ export default {
   font-weight: bold;
 }
 
-<<<<<<< Updated upstream
-.itemTabel {
-  display: flex;
-  padding-block: 2.5vh;
-}
-
-=======
->>>>>>> Stashed changes
 .itemTitlu {
   display: flex;
   justify-content: center;
@@ -630,13 +478,10 @@ export default {
   background-color: #8689ba;
 }
 
-<<<<<<< Updated upstream
-=======
 .switch-checked {
   background-color: #8689ba;
   color: #8689ba;
 }
->>>>>>> Stashed changes
 .buttonTitlu {
   display: flex;
   width: 110px;
@@ -677,15 +522,12 @@ export default {
   margin-inline: 5vw;
 }
 
-<<<<<<< Updated upstream
-=======
 .options {
   margin: 20px 0;
   width: 90%;
   height: 5vh;
   margin-inline: 5vw;
 }
->>>>>>> Stashed changes
 
 .optiuniFiltru {
   display: flex;

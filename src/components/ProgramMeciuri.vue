@@ -46,21 +46,6 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< Updated upstream
-
-.customBox{
-    width: 35vw;
-    height: 45vh;
-    border-radius: 20px;
-    border-color: 3px solid #4b6ad7;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 5vh;
-    background-color: #ffffff;
-
-=======
 .customBox {
   width: 35vw;
   height: 45vh;
@@ -72,7 +57,6 @@ export default {
   flex-direction: column;
   padding-top: 5vh;
   background-color: #ffffff;
->>>>>>> Stashed changes
 }
 
 .gameStatus {

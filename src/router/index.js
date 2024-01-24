@@ -9,13 +9,7 @@ import ClubDetailsAdminView from "../views/Admin/ClubDetailsAdminView.vue";
 import UserAdminView from '../views/Admin/UserAdminView';
 import LoggedInLayout from '../views/Layout/LoggedInLayout';
 import NotLoggedLayout from '../views/Layout/NotLoggedLayout';
-<<<<<<< Updated upstream
-import UserAdminView from "../views/Admin/UserAdminView.vue";
-
-
-=======
 import VerifyEmailView from '../views/Auth/VerifyEmail';
->>>>>>> Stashed changes
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -40,13 +34,8 @@ const router = createRouter({
       component: LoggedInLayout,
       children: [
         {
-<<<<<<< Updated upstream
-          path: "/admin/Users",
-          name: "User",
-=======
           path:"/admin/User",
           name: 'Users',
->>>>>>> Stashed changes
           component: UserAdminView,
         },
         {
