@@ -8,6 +8,7 @@ import MatchesAdminView from "../views/Admin/MatchesAdminView.vue";
 import ClubDetailsAdminView from "../views/Admin/ClubDetailsAdminView.vue";
 import LoggedInLayout from '../views/Layout/LoggedInLayout';
 import NotLoggedLayout from '../views/Layout/NotLoggedLayout';
+import UserAdminView from "../views/Admin/UserAdminView.vue";
 
 
 const router = createRouter({
@@ -28,6 +29,11 @@ const router = createRouter({
       path: "",
       component: LoggedInLayout,
       children: [
+        {
+          path: "/admin/Users",
+          name: "User",
+          component: UserAdminView,
+        },
         {
           path: "/admin/Homepage",
           name: "Homepage",
