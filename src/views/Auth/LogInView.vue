@@ -45,6 +45,7 @@
         />
         <ErrorMessage name="password" class="error-message" />
       </div>
+      <div class="error-message" v-if="message">{{ message }}</div>
       <button type="submit">Connect</button>
     </Form>
   </div>
@@ -62,6 +63,7 @@ export default {
         username: "",
         password: "",
       },
+      message: "",
       isLoginSquareVisible: false,
       isImageUserVisible: true,
       isZoomingOut: false,

@@ -15,3 +15,6 @@
     content: url('../assets/images/loader3.gif');
   }
   
+  .error-message {
+    color: rgb(152, 29, 29);
+  }

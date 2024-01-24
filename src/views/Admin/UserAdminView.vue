@@ -139,14 +139,14 @@ export default {
   },
   methods: {
     UpdateUserAccess(id) {
-      self.$axios
+      this.$axios
         .put(`/api/User/changeUserAccess/${id}`, this.$store.state.auth.user)
         .then((response) => {
-          self.GetUsers();
-          self.$swal.fire("Success", `${response.data}`, "success");
+          this.GetUsers();
+          this.$swal.fire("Success", `${response.data}`, "success");
         })
         .catch((error) => {
-          self.$swal.fire("Error", `${error}`, "error");
+          this.$swal.fire("Error", `${error}`, "error");
         });
     },
     OpenAddUserModal() {

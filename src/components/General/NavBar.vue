@@ -42,6 +42,14 @@
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'Users' }">Administrare useri</router-link>
             </li>
+            <li class="nav-item">
+              <font-awesome-icon
+                :icon="['fas', 'arrow-right-from-bracket']"
+                class="nav-link"
+                style="cursor: pointer"
+                @click="logOut"
+              />
+            </li>
           </div>
         </ul>
       </div>
@@ -52,6 +60,27 @@
 <script>
 export default {
   name: "NavBar",
+  methods: {
+    logOut() {
+      this.$swal
+        .fire({
+          title: "Are you sure?",
+          text: "Are you sure you want to log out?",
+          icon: "info",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Log out!",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.$store.dispatch("auth/logout").then(() => {
+              this.$router.push("/login");
+            });
+          }
+        });
+    },
+  },
 };
 </script>
 
