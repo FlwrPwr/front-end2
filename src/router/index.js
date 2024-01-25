@@ -10,6 +10,15 @@ import UserAdminView from '../views/Admin/UserAdminView';
 import LoggedInLayout from '../views/Layout/LoggedInLayout';
 import NotLoggedLayout from '../views/Layout/NotLoggedLayout';
 import VerifyEmailView from '../views/Auth/VerifyEmail';
+
+//user
+import SponsorsUserView from "../views/User/SponsorsUserView.vue";
+import ClubDetailsUserView from "../views/User/ClubDetailsUserView.vue";
+import HomePageUserView from "../views/User/HomePageUserView.vue";
+import MatchesUserView from "../views/User/MatchesUserView.vue";
+import NewsPageUserView from "../views/User/NewsUserView.vue";
+import PlayerUserView from "../views/User/PlayerUserView.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -67,6 +76,37 @@ const router = createRouter({
           path: "/admin/clubDetails",
           name: "ClubDetails",
           component: ClubDetailsAdminView,
+        },
+        //user
+        {
+          path: "/sponsors",
+          name: "SponsorsUser",
+          component: SponsorsUserView,
+        },
+        {
+          path: "/clubDetailsUser",
+          name: "ClubDetailsUser",
+          component: ClubDetailsUserView,
+        },
+        {
+          path: "Homepage",
+          name: "HomepageUser",
+          component: HomePageUserView,
+        },
+        {
+          path: "matches",
+          name: "MatchesUser",
+          component: MatchesUserView,
+        },
+        {
+          path: "news",
+          name: "NewsUser",
+          component: NewsPageUserView,
+        },
+        {
+          path: "Players",
+          name: "PlayersUser",
+          component: PlayerUserView,
         },
       ],
     },
