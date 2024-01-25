@@ -1,6 +1,5 @@
 <template>
   <div>
-    <navbar></navbar>
     <div class="containerTDR">
       <div class="title">
         <h1>Meciuri</h1>
@@ -123,6 +122,7 @@ export default {
 <style>
 .containerTDR {
   height: auto;
+  margin-top: 30vh;
 }
 
 .title {
