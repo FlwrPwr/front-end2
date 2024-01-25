@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Navbar from "@/components/General/NavBar.vue";
+import Navbar from "@/components/General/NavBarUser.vue";
 import MatchesCategoryUser from "@/components/Matches/MatchesCategoryUser.vue";
 
 export default {

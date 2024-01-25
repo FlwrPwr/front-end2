@@ -89,22 +89,22 @@ const router = createRouter({
           component: ClubDetailsUserView,
         },
         {
-          path: "Homepage",
+          path: "/Homepage",
           name: "HomepageUser",
           component: HomePageUserView,
         },
         {
-          path: "matches",
+          path: "/matches",
           name: "MatchesUser",
           component: MatchesUserView,
         },
         {
-          path: "news",
+          path: "/news",
           name: "NewsUser",
           component: NewsPageUserView,
         },
         {
-          path: "Players",
+          path: "/Players",
           name: "PlayersUser",
           component: PlayerUserView,
         },
@@ -121,6 +121,12 @@ router.beforeEach((to, from, next) => {
     '/account/verify-email',
     '/account/forgot-password',
     '/account/reset-password',
+    '/sponsors',
+    '/clubDetailsUser',
+    '/Homepage',
+    '/news',
+    '/Players',
+
   ];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');

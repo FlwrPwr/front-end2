@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Navbar from "@/components/General/NavBar.vue";
+import Navbar from "@/components/General/NavBarUser.vue";
 import Clasament from "@/components/Clasament.vue";
 import ProgramMeciuri from "@/components/ProgramMeciuri.vue";
 import NewsBox from "@/components/NewsBox.vue";
