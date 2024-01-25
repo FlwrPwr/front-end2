@@ -24,20 +24,7 @@
             <div class="numeJucator col">
               {{ player.FirstName + " " + player.LastName }}
             </div>
-            <div class="col-auto playerEdits">
-              <font-awesome-icon
-                :icon="['fas', 'user-pen']"
-                size="xs"
-                @click="GetPlayerDetails(player.Id)"
-              />
-            </div>
-            <div class="col-auto playerEdits">
-              <font-awesome-icon
-                :icon="['fas', 'eraser']"
-                size="xs"
-                @click="DeletePlayer(player.Id)"
-              />
-            </div>
+            
           </div>
         </div>
       </div>
