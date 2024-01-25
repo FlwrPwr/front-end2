@@ -119,6 +119,7 @@ export default {
   align-items: center;
   margin-top: 10vh;
   padding-left: 1.5vw;
+  margin-left: 8vw;
 }
 
 .containerRow {

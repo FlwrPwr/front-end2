@@ -42,14 +42,14 @@
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'Users' }">Administrare useri</router-link>
             </li>
-            <li class="nav-item">
-              <font-awesome-icon
+          </div>
+          <div class="logout">
+            <font-awesome-icon
                 :icon="['fas', 'arrow-right-from-bracket']"
                 class="nav-link"
                 style="cursor: pointer"
                 @click="logOut"
               />
-            </li>
           </div>
         </ul>
       </div>
@@ -89,6 +89,12 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.logout{
+  display: flex;
+  padding-top: 20px;
+  margin-left: 5vw;
 }
 
 .navbar {
@@ -144,6 +150,7 @@ export default {
 
 .navbar-nav {
   align-items: center;
+  padding-left: 10vw;
 }
 
 .navbar .navbar-nav .nav-link {
