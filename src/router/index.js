@@ -30,11 +30,42 @@ const router = createRouter({
         {
           path: "/login",
           component: LogInView,
+          name: 'LogIn'
         },
         {
           path: "/account/verify-email",
           name: "VerifyEmail",
           component: VerifyEmailView,
+        },
+        {
+          path: "/sponsors",
+          name: "SponsorsUser",
+          component: SponsorsUserView,
+        },
+        {
+          path: "/clubDetailsUser",
+          name: "ClubDetailsUser",
+          component: ClubDetailsUserView,
+        },
+        {
+          path: "/Homepage",
+          name: "HomepageUser",
+          component: HomePageUserView,
+        },
+        {
+          path: "/matches",
+          name: "MatchesUser",
+          component: MatchesUserView,
+        },
+        {
+          path: "/news",
+          name: "NewsUser",
+          component: NewsPageUserView,
+        },
+        {
+          path: "/Players",
+          name: "PlayersUser",
+          component: PlayerUserView,
         },
       ],
     },
@@ -78,36 +109,7 @@ const router = createRouter({
           component: ClubDetailsAdminView,
         },
         //user
-        {
-          path: "/sponsors",
-          name: "SponsorsUser",
-          component: SponsorsUserView,
-        },
-        {
-          path: "/clubDetailsUser",
-          name: "ClubDetailsUser",
-          component: ClubDetailsUserView,
-        },
-        {
-          path: "/Homepage",
-          name: "HomepageUser",
-          component: HomePageUserView,
-        },
-        {
-          path: "/matches",
-          name: "MatchesUser",
-          component: MatchesUserView,
-        },
-        {
-          path: "/news",
-          name: "NewsUser",
-          component: NewsPageUserView,
-        },
-        {
-          path: "/Players",
-          name: "PlayersUser",
-          component: PlayerUserView,
-        },
+       
       ],
     },
   ],

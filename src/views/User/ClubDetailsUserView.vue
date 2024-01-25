@@ -2,15 +2,21 @@
   <div class="club-details">
     <div class="background-image">
       <img src="@/assets/images/clubDetailsImage.png" class="image" alt="Club Details Image" />
-      <div class="club-title">
-        CSU Suceava Handball
-      </div>
+      <div class="club-title">CSU Suceava Handball</div>
     </div>
     <div class="subtitle-row">
-      <div class="subtitle" :class="{ active: selectedSubtitle === 'clubDetails' }" @click="showClubDetails">
+      <div
+        class="subtitle"
+        :class="{ active: selectedSubtitle === 'clubDetails' }"
+        @click="showClubDetails"
+      >
         Detalii club
       </div>
-      <div class="subtitle" :class="{ active: selectedSubtitle === 'trophys' }" @click="showTrophys">
+      <div
+        class="subtitle"
+        :class="{ active: selectedSubtitle === 'trophys' }"
+        @click="showTrophys"
+      >
         Trofee
       </div>
     </div>
@@ -20,11 +26,8 @@
           <div class="col ms-5 ps-5">
             <h2>Detalii club</h2>
           </div>
-
         </div>
-        <div class="m-5 p-5 mt-0">
-          {{ details }}
-        </div>
+        <div v-html="details.Content" class="m-5 p-5 mt-0"></div>
       </div>
       <div v-if="selectedSubtitle === 'trophys'">
         <div class="trophysContent">
@@ -35,10 +38,7 @@
                 <img :src="trophy.ImgBase64" class="trophy-image" />
                 <div class="trophy-year">{{ trophy.Name }}</div>
                 <div class="trophy-year">{{ trophy.Date }}</div>
-                <div class="trophy-actions">
-                  <button class="action-button" @click="GetTrophy(trophy.Id)">Edit</button>
-                  <button class="action-button" @click="DeleteTrophy(trophy.Id)">Delete</button>
-                </div>
+                <div class="trophy-actions"></div>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default {
   },
   data() {
     return {
-      details: {},
+      details: "",
       selectedSubtitle: "trophys",
       trophies: [],
       selectedTrophy: {},
@@ -184,16 +184,15 @@ export default {
 </script>
 
 <style scoped>
-
 .club-title {
-    position: absolute;
-    top: 35%;
-    left: 16%;
-    font-weight: bold;
-    font-size: 6rem;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-    color: #ffffff;
+  position: absolute;
+  top: 35%;
+  left: 16%;
+  font-weight: bold;
+  font-size: 6rem;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+  color: #ffffff;
 }
 .trophy-box {
   display: flex;

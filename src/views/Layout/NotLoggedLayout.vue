@@ -1,6 +1,6 @@
 <template>
-<div>
-    <Navbar class="overlay"></Navbar>
+  <div>
+    <Navbar v-if="$route.name != 'LogIn'" class="overlay"></Navbar>
     <router-view />
   </div>
 </template>

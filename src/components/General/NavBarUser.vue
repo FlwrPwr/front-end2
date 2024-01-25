@@ -1,33 +1,45 @@
 <template>
   <nav class="navbar navbar-expand-md" style="background-color: #8689ba">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
           <div class="div-items">
-            <li class="nav-item" style="margin-left: 11vw;">
+            <li class="nav-item" style="margin-left: 11vw">
               <router-link class="nav-link" :to="{ name: 'NewsUser' }">Noutati</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'SponsorsUser' }">Sponsori/Parteneri</router-link>
+              <router-link class="nav-link" :to="{ name: 'SponsorsUser' }"
+                >Sponsori/Parteneri</router-link
+              >
             </li>
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'PlayersUser' }">Echipa</router-link>
             </li>
           </div>
           <a class="navbar-brand d-none d-md-block" href="#">
-            <router-link class="nav-link" :to="{ name: 'HomepageUser' }"><img src="../../assets/images/emblem.jpg"
-                alt="" /></router-link>
+            <router-link class="nav-link" :to="{ name: 'HomepageUser' }"
+              ><img src="../../assets/images/emblem.jpg" alt=""
+            /></router-link>
           </a>
           <div class="div-items">
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'ClubDetailsUser' }">Detalii club</router-link>
+              <router-link class="nav-link" :to="{ name: 'ClubDetailsUser' }"
+                >Detalii club</router-link
+              >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'MatchesUser' }">Meciuri</router-link>
+              <router-link class="nav-link" :to="{ name: 'MatchesUser' }">LogIn</router-link>
             </li>
           </div>
         </ul>

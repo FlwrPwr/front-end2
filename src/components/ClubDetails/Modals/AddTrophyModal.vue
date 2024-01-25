@@ -96,8 +96,8 @@ export default {
   computed: {
     Schema() {
       return yup.object({
-        competitionName: yup.string().required("Sponsor name is required"),
-        competitionDate: yup.date().required("Link to sponsor webpage is required"),
+        competitionName: yup.string().required("Trophy name is required"),
+        competitionDate: yup.date().required("Trophy date required"),
       });
     },
   },
