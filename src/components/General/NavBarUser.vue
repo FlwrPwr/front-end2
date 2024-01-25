@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
           <div class="div-items">
-            <li class="nav-item" style="margin-left: 11vw">
+            <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'NewsUser' }">Noutati</router-link>
             </li>
             <li class="nav-item">
@@ -39,7 +39,10 @@
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'MatchesUser' }">LogIn</router-link>
+              <router-link class="nav-link" :to="{ name: 'MatchesUser' }">Meciuri</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'MatchesUser' }">Handbal juvenil</router-link>
             </li>
           </div>
         </ul>
@@ -142,8 +145,6 @@ export default {
 .navbar-nav {
   display: flex;
   align-items: center;
-  padding-left: 15vw;
-  margin-left: 15vw;
 }
 
 .navbar .navbar-nav .nav-link {
