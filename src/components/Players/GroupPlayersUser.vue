@@ -1,7 +1,26 @@
 <template>
   <div class="contentDiv">
     <div class="imagineTeren">
-      <img src="../../assets/images/teren.png" alt="Teren" />
+      <img src="../../assets/images/teren.png" alt="Teren" class="imgTeren"/>
+      <div 
+     id="dot-1" 
+     :class="{ 'dot-large': selectedGroup === 'Portari', 'dot-medium': selectedGroup !== 'Portari' }">
+</div>
+<div 
+     id="dot-2" 
+     :class="{ 'dot-large': selectedGroup === 'Fundasi', 'dot-medium': selectedGroup !== 'Fundasi' }">
+</div>
+<div 
+     id="dot-3" 
+     :class="{ 'dot-large': selectedGroup === 'Centrali', 'dot-medium': selectedGroup !== 'Centrali' }">
+</div>
+<div 
+     id="dot-4" 
+     :class="{ 'dot-large': selectedGroup === 'Atacanti', 'dot-medium': selectedGroup !== 'Atacanti' }">
+    </div>
+
+
+      
     </div>
     <div class="listaJucatori">
       <div>
@@ -9,6 +28,7 @@
           <div class="empltyElementPlayer"></div>
           <div class="positionTypePlayer row ms-3 align-items-center">
             <div class="col">{{ selectedGroup }}</div>
+           
           </div>
         </div>
         <div
@@ -32,12 +52,25 @@
     <div class="imagineJucator">
       <div v-if="hoverPlayer">
         <img class="imagineJucator" :src="$utils.GetImageFormat(hoverPlayer.ImgBase64)" />
+        <div class="imgTxt">{{ hoverPlayer.FirstName + " " + hoverPlayer.LastName }}</div>
       </div>
     </div>
   </div>
+  <AddPlayerModal
+    ref="addPlayerModalRef"
+    :position="selectedGroup"
+    @get="$emit('get', selectedGroup)"
+  ></AddPlayerModal>
+  <EditPlayerModal
+    ref="editPlayerModalRef"
+    :player="selectedPlayer"
+    @get="$emit('get', selectedGroup)"
+  ></EditPlayerModal>
 </template>
 
 <script>
+import AddPlayerModal from "./Modals/AddPlayerModal.vue";
+import EditPlayerModal from "./Modals/EditPlayerModal.vue";
 export default {
   name: "GroupPlayers",
   emits: ["get"],
@@ -51,6 +84,8 @@ export default {
     },
   },
   components: {
+    AddPlayerModal,
+    EditPlayerModal,
   },
   data() {
     return {
@@ -104,6 +139,25 @@ export default {
 </script>
 
 <style scoped>
+.dot-large {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: red;
+  left: 50%; 
+  transform: translateX(-50%);
+}
+.dot-medium {
+  width: 10px; 
+  height: 10px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: red;
+  left: 50%; 
+  transform: translateX(-50%);
+
+}
 .playerEdits {
   border-left: none;
   border-top: 0.2rem solid gray;
@@ -124,7 +178,7 @@ export default {
 .numeJucator {
   padding-inline: 1vw;
   border-top: 0.2rem solid gray;
-  width: 90%;
+  width: 40vw;
   box-sizing: border-box;
   border-left: none;
 }
@@ -137,28 +191,36 @@ export default {
 }
 
 .imagineTeren {
-  width: 15vw;
-  height: 100%;
+  position: relative;
+  width:18vw;
   display: flex;
   align-items: center;
+  margin: 1vw;
+  place-items: center;
+}
+.imgTeren
+{
+  max-width: 100%;
+  max-height: 100%;
 }
 
+
+#dot-1 { top: 20%; } 
+#dot-2 { top: 30%; } 
+#dot-3 { top: 45%; } 
+#dot-4 { top: 60%; }
 .imagineJucator {
-  margin-left: 10px;
-  width: 60%;
+  margin: 1vw;
+  width: 30vw;
   height: 100%;
   display: flex;
   align-items: center;
-}
 
-.imagineJucator > img {
-  height: 100%;
-  width: auto;
 }
+.imgTxt{
 
-.imagineTeren > img {
-  height: 50vh;
-  width: 100%;
+  text-align: center;
+  
 }
 
 .empltyElementPlayer {
