@@ -11,6 +11,8 @@ import LoggedInLayout from '../views/Layout/LoggedInLayout';
 import NotLoggedLayout from '../views/Layout/NotLoggedLayout';
 import VerifyEmailView from '../views/Auth/VerifyEmail';
 
+import NewsClickAdminView from "../views/Admin/NewsClickAdminView.vue";
+
 //user
 import SponsorsUserView from "../views/User/SponsorsUserView.vue";
 import ClubDetailsUserView from "../views/User/ClubDetailsUserView.vue";
@@ -87,6 +89,11 @@ const router = createRouter({
           path: "/admin/news",
           name: "News",
           component: NewsPageAdminView,
+        },
+        {
+          path: "/admin/newsClick",
+          name: "News Click",
+          component: NewsClickAdminView,
         },
         {
           path: "/admin/Players",

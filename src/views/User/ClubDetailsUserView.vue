@@ -2,7 +2,6 @@
   <div class="club-details">
     <div class="background-image">
       <img src="@/assets/images/clubDetailsImage.png" class="image" alt="Club Details Image" />
-      <div class="club-title">CSU Suceava Handball</div>
     </div>
     <div class="subtitle-row">
       <div

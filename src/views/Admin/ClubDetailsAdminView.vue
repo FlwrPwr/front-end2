@@ -2,9 +2,6 @@
   <div class="club-details">
     <div class="background-image">
       <img src="@/assets/images/clubDetailsImage.png" class="image" alt="Club Details Image" />
-      <div class="club-title">
-        CSU Suceava Handball
-      </div>
     </div>
     <div class="subtitle-row">
       <div class="subtitle" :class="{ active: selectedSubtitle === 'clubDetails' }" @click="showClubDetails">
@@ -190,17 +187,6 @@ export default {
 
 <style scoped>
 
-.club-title {
-    position: absolute;
-    top: 35%;
-    left: 16%;
-    font-weight: bold;
-    font-size: 6rem;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-    color: #ffffff;
-}
-
 .trophy-box {
   display: flex;
   flex-direction: column;
@@ -260,7 +246,7 @@ export default {
 
 .club-details {
   height: auto;
-  padding-top: 6%;
+  padding-top: 4.5%;
 }
 
 .subtitle-row {
