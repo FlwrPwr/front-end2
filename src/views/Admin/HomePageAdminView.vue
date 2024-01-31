@@ -7,17 +7,19 @@
         <ProgramMeciuri class="programMeciuri"></ProgramMeciuri>
       </div>
       <div class="containerNews">
+        <!-- {{ newsData }} -->
         <NewsBox
           style="margin-inline: 2.5vw"
           v-for="(news, index) in newsData"
           :key="index"
-          :imageSrc="news.imageSrc"
-          :altText="news.altText"
-          :date="news.date"
-          :title="news.title"
+          :imageSrc="news.ImgBase64"
+          :altText="news.ShortDescription"
+          :date="FormatDate(news.Date)"
+          :title="news.Title"
+          :id="news.Id"
         ></NewsBox>
       </div>
-      <div class="containerNews" style="border-bottom: 2px solid grey; padding-bottom: 8vh">
+      <!-- <div class="containerNews" style="border-bottom: 2px solid grey; padding-bottom: 8vh">
         <NewsBox
           style="margin-inline: 2.5vw"
           v-for="(news, index) in additionalNewsData"
@@ -27,7 +29,7 @@
           :date="news.date"
           :title="news.title"
         ></NewsBox>
-      </div>
+      </div> -->
       <div class="carouselPlayers">
         <Carousel></Carousel>
       </div>
@@ -53,53 +55,62 @@ export default {
   },
   data() {
     return {
-      matchesData: [
-        { number: 1, team: "Atlanta", mp: 8, w: 6, d: 1, l: 1, g: "13:5", pts: 19 },
-        { number: 2, team: "Oc", mp: 9, w: 7, d: 2, l: 2, g: "14:5", pts: 20 },
-        { number: 3, team: "HaHaHa Prod", mp: 10, w: 9, d: 5, l: 2, g: "19:5", pts: 21 },
-      ],
+      matchesData: [],
       newsData: [
-        {
-          imageSrc: "https://source.unsplash.com/random/200x200?sig=3",
-          altText: "news image 1",
-          date: "29 nov 23",
-          title: "Exciting News Title 1",
-        },
-        {
-          imageSrc: "https://source.unsplash.com/random/200x200?sig=5",
-          altText: "news image 2",
-          date: "30 nov 23",
-          title: "Exciting News Title 2",
-        },
-        {
-          imageSrc: "https://source.unsplash.com/random/200x200?sig=6",
-          altText: "news image 3",
-          date: "28 nov 23",
-          title: "Exciting News Title 3",
-        },
+        // {
+        //   imageSrc: "https://source.unsplash.com/random/200x200?sig=3",
+        //   altText: "news image 1",
+        //   date: "29 nov 23",
+        //   title: "Exciting News Title 1",
+        // },
+        // {
+        //   imageSrc: "https://source.unsplash.com/random/200x200?sig=5",
+        //   altText: "news image 2",
+        //   date: "30 nov 23",
+        //   title: "Exciting News Title 2",
+        // },
+        // {
+        //   imageSrc: "https://source.unsplash.com/random/200x200?sig=6",
+        //   altText: "news image 3",
+        //   date: "28 nov 23",
+        //   title: "Exciting News Title 3",
+        // },
       ],
-      additionalNewsData: [
-        {
-          imageSrc: "https://source.unsplash.com/random/200x200?sig=6",
-          altText: "additional news image 1",
-          date: "1 dec 23",
-          title: "Additional News Title 1",
-        },
-        {
-          imageSrc: "https://source.unsplash.com/random/200x200?sig=6",
-          altText: "additional news image 2",
-          date: "2 dec 23",
-          title: "Additional News Title 2",
-        },
-        {
-          imageSrc: "https://source.unsplash.com/random/200x200?sig=7",
-          altText: "additional news image 3",
-          date: "3 dec 23",
-          title: "Additional News Title 3",
-        },
-      ],
+
       topImagePath: "https://source.unsplash.com/random/200x200?sig=2",
     };
+  },
+  methods: {
+    FormatDate(inputDateString) {
+      const inputDate = new Date(inputDateString);
+      const day = inputDate.getDate();
+      const month = inputDate.getMonth() + 1; // Months are zero-indexed, so add 1
+      const year = inputDate.getFullYear();
+      const formattedDay = day.toString().padStart(2, "0");
+      const formattedMonth = month.toString().padStart(2, "0");
+      const formattedDateString = `${formattedDay}/${formattedMonth}/${year}`;
+
+      return formattedDateString;
+    },
+    GetTeamRanking() {
+      this.$axios.get("/api/TeamRanking/getAll").then((response) => {
+        this.matchesData = response.data.Items;
+      });
+    },
+    GetNews() {
+      this.$axios
+        .get("/api/Article/getAll?pageSize=5")
+        .then((response) => {
+          this.newsData = response.data.Items;
+        })
+        .catch(() => {
+          this.$swal.fire("Something went wrong", "", "error");
+        });
+    },
+  },
+  created() {
+    this.GetTeamRanking();
+    this.GetNews();
   },
 };
 </script>

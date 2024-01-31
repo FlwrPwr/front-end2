@@ -24,6 +24,8 @@
         :fixturesData="selectedTeamFixtureData"
         :resultsData="selectedTeamResultsData"
         :isAdmin="isAdmin"
+        @addResult="AppendResult()"
+        @addFixures="AppendFixures()"
       ></MatchesCategory>
     </div>
   </div>
@@ -40,44 +42,8 @@ export default {
   },
   data() {
     return {
-      menFixtureData: [
-        {
-          isHome: true,
-          stadion: "Stadion Name 1",
-          ora: "Match Time 2",
-          team1Emblem: "../../assets/images/emblem.jpg",
-          team2Emblem: "../../assets/images/emblem.jpg",
-          currentDate: "July 2023",
-        },
-        {
-          isHome: false,
-          stadion: "Stadion Name 2",
-          ora: "Match Time 2",
-          team1Emblem: "../../assets/images/emblem.jpg",
-          team2Emblem: "../../assets/images/emblem.jpg",
-          currentDate: "March 2023",
-        },
-      ],
-      menResultsData: [
-        {
-          stadion: "Stadion Name 1",
-          ora: "Match Time 1",
-          team1Emblem: "../../assets/images/emblem.jpg",
-          team2Emblem: "../../assets/images/emblem.jpg",
-          currentDate: "October 2023",
-          team1Score: 1,
-          team2Score: 2,
-        },
-        {
-          stadion: "Stadion Name 2",
-          ora: "Match Time 2",
-          team1Emblem: "../../assets/images/emblem.jpg",
-          team2Emblem: "../../assets/images/emblem.jpg",
-          currentDate: "March 2023",
-          team1Score: 1,
-          team2Score: 2,
-        },
-      ],
+      menFixtureData: [],
+      menResultsData: [],
       juvenilFixtureData: [
         {
           isHome: true,
@@ -112,9 +78,43 @@ export default {
     },
   },
   methods: {
+    GetAllMatched() {
+      this.$axios.get(`/api/Match/getAll?results=false`).then((response) => {
+        this.menFixtureData = response.data.Items;
+        console.log(response.data);
+      });
+    },
+    GetAllResults() {
+      this.$axios.get(`/api/Match/getAll?results=true`).then((response) => {
+        this.menResultsData = response.data.Items;
+        console.log(response.data);
+      });
+    },
+    AppendResult() {
+      this.$axios.get(`/api/Match/getAll?results=true`).then((response) => {
+        response.data.Items.forEach((element) => {
+          this.menResultsData.push(element);
+        });
+        // this.menResultsData.push(response.data.Items);
+        console.log(response.data);
+      });
+    },
+    AppendFixures() {
+      this.$axios.get(`/api/Match/getAll?results=false`).then((response) => {
+        response.data.Items.forEach((element) => {
+          this.menFixtureDatas.push(element);
+        });
+        // this.menFixtureDatas.push(response.data.Items);
+        console.log(response.data);
+      });
+    },
     selectTeam(team) {
       this.selectedTeam = team;
     },
+  },
+  created() {
+    this.GetAllMatched();
+    this.GetAllResults();
   },
 };
 </script>

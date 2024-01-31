@@ -13,58 +13,88 @@
         <div v-for="(fixture, index) in fixturesData" :key="index">
           <div class="containerTD">
             <div class="fixtureContainer">
-              <div class="dateBox">{{ fixture.currentDate }}</div>
+              <div class="dateBox">{{ fixture.Date }}</div>
               <div class="fixtureBox">
                 <div
                   :class="{
                     statusBox: true,
-                    awayStatusBox: !fixture.isHome,
-                    homeStatusBox: fixture.isHome,
+                    awayStatusBox: !fixture.IsHome,
+                    homeStatusBox: fixture.IsHome,
                   }"
                 >
-                  <div class="mirror-text">{{ fixture.isHome ? "HOME" : "AWAY" }}</div>
+                  <div class="mirror-text">{{ fixture.IsHome ? "HOME" : "AWAY" }}</div>
                 </div>
                 <div class="infoBox">
-                  <div style="margin-bottom: 3vh">
+                  <div style="margin-bottom: 3vh" v-if="fixture.CompetitionId">
                     <img
                       src="@/assets/images/location.png"
                       alt="Location Icon"
                       class="locationIcon"
                     />
-                    {{ fixture.stadion }}
+                    {{ fixture.CompetitionId.Name }}
                   </div>
                   <div>
                     <img src="@/assets/images/clock.png" alt="Clock Icon" class="clockIcon" />
-                    {{ fixture.ora }}
+                    {{ fixture.MatchDate }}
                   </div>
                 </div>
                 <div class="teamsBox">
-                  <img class="team" :src="$utils.GetImageFormat(fixture.team1Emblem)" />
+                  <img class="team" :src="$utils.GetImageFormat(fixture.AwayImgBase64)" />
                   <div class="vs">VS</div>
-                  <img
-                    class="team"
-                    :src="$utils.GetImageFormat(fixture.team2Emblem)"
-                    alt="Echipa 2 Emblem"
-                  />
+                  <img class="team" :src="$utils.GetImageFormat(fixture.HomeImgBase64)" />
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="d-flex justify-content-center mt-5">
+          <button class="btn btn-primary w-25" @click="$emit('addFixures')">Show more</button>
+        </div>
       </div>
 
       <div v-else>
         <div v-for="(result, indexResults) in resultsData" :key="indexResults">
-          <component
-            :is="isAdmin ? 'AdminResults' : 'Results'"
-            :stadion="result.stadion"
-            :ora="result.ora"
-            :team1Emblem="result.team1Emblem"
-            :team2Emblem="result.team2Emblem"
-            :currentDate="result.currentDate"
-            :team1Score="result.team1Score"
-            :team2Score="result.team2Score"
-          ></component>
+          <div class="container">
+            <div class="resultContainer">
+              <div class="dateBox">{{ result.Date }}</div>
+              <div class="resultBox">
+                <div class="items">
+                  <div class="rowtdr">
+                    <div class="infoBox">
+                      <div style="margin-bottom: 3vh">
+                        <img
+                          src="@/assets/images/location.png"
+                          alt="Location Icon"
+                          class="locationIcon"
+                        />
+                        {{ result.CompetitionId.Name }}
+                      </div>
+                      <div>
+                        <img src="@/assets/images/clock.png" alt="Clock Icon" class="clockIcon" />
+                        {{ result.MatchDate }}
+                      </div>
+                    </div>
+                    <div class="teamsBox">
+                      <img
+                        class="team"
+                        :src="$utils.GetImageFormat(result.HomeImgBase64)"
+                        alt="Team 1 Emblem"
+                      />
+                      <div class="score">{{ result.HomePoints }} - {{ result.AwayPoints }}</div>
+                      <img
+                        class="team"
+                        :src="$utils.GetImageFormat(result.HomeImgBase64)"
+                        alt="Team 2 Emblem"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+          <button class="btn btn-primary w-25" @click="$emit('addResults')">Show more</button>
         </div>
       </div>
     </div>
@@ -114,6 +144,107 @@ export default {
 </script>
 
 <style scoped>
+.rowtdr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.dateBox {
+  width: 15vw;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #898282;
+  margin-bottom: 18vh;
+}
+
+.resultContainer {
+  display: flex;
+  align-items: center;
+}
+
+.resultBox {
+  background-color: #eeecec;
+  border-radius: 20px;
+  width: 65vw;
+  height: 30vh;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-left: 5vw;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.infoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-around;
+  flex-grow: 1;
+  color: #898282;
+  font-weight: bold;
+  width: 15vw;
+  height: 18vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  padding-left: 2vw;
+  border-right: 2px solid #c6c6c6;
+}
+
+.locationIcon,
+.clockIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.teamsBox {
+  display: flex;
+  align-items: center;
+  height: 18vh;
+  width: 45vw;
+  padding-left: 8vw;
+}
+
+.team {
+  width: 12vw;
+  height: 12vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.score {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.matchHub {
+  background-color: #f41717;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.hubButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  padding: 20px;
+  width: 100%;
+  padding-inline: 28vw;
+  border-top: 2px solid #c6c6c6;
+}
 .dateBox {
   width: 15vw;
   font-size: 1.5rem;

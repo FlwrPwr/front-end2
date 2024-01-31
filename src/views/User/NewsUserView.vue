@@ -1,8 +1,7 @@
-
 <template>
   <div class="topBar">
     <div class="leftItems">
-      <div><img src="../../assets/images/Sample_User_Icon.png" class="image-topBar"></div>
+      <div><img src="../../assets/images/Sample_User_Icon.png" class="image-topBar" /></div>
       <div>
         <h5>News</h5>
       </div>
@@ -11,27 +10,40 @@
   </div>
   <div class="newsItem">
     <div class="newsItems">
-      <NewsItem v-for="(item, index) in articles.Items" :key="index" :id="item.Id" :header="item.Title"
-        :subhead="item.ShortDescription" :imgBase64="item.ImgBase64" :date="item.Date" :title="item.title"
-        :subtitle="item.subtitle" :newsText="item.Content" @get="GetNews" @edit="OpenEditNewsModal" @delete="DeleteNews">
+      <NewsItem
+        @click="NewsDetails(item.Id)"
+        v-for="(item, index) in articles.Items"
+        :key="index"
+        :id="item.Id"
+        :header="item.Title"
+        :subhead="item.ShortDescription"
+        :imgBase64="item.ImgBase64"
+        :date="item.Date"
+        :title="item.title"
+        :subtitle="item.subtitle"
+        :newsText="item.Content"
+      >
       </NewsItem>
-     
     </div>
   </div>
-  
-  <EditNews ref="editNewsModalRef" @get="GetNews" :article="editNews" :addedTags="addedTags"></EditNews>
 
+  <EditNews
+    ref="editNewsModalRef"
+    @get="GetNews"
+    :article="editNews"
+    :addedTags="addedTags"
+  ></EditNews>
 </template>
 
 <script default>
-import SlidingSearch from '../../components/General/SearchComponent.vue';
-import NewsItem from '../../components/News/newsItemUser.vue';
+import SlidingSearch from "../../components/General/SearchComponent.vue";
+import NewsItem from "../../components/News/newsItemUser.vue";
 export default {
   components: {
     NewsItem,
     SlidingSearch,
   },
-  name: 'TableComponent',
+  name: "TableComponent",
   data() {
     return {
       isDarker: false,
@@ -49,23 +61,28 @@ export default {
     };
   },
   methods: {
+    NewsDetails(id) {
+      this.$router.push({ name: "NewsDetails", params: { id: id } });
+    },
     DeleteNews(id) {
-      this.$swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.$axios.put(`/api/Article/deleteVirtual/${id}`).then(() => {
-            this.$swal.fire('Article deteleted succesfully', '', 'success');
-            this.$emit('get');
-          })
-        }
-      });
+      this.$swal
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.$axios.put(`/api/Article/deleteVirtual/${id}`).then(() => {
+              this.$swal.fire("Article deteleted succesfully", "", "success");
+              this.$emit("get");
+            });
+          }
+        });
     },
 
     OpenAddNewsModal() {
@@ -74,31 +91,37 @@ export default {
       setTimeout(() => {
         this.isDarker = false;
       }, 400);
-      $('#addNewsModal').modal('show');
+      $("#addNewsModal").modal("show");
     },
     OpenEditNewsModal(id) {
-      this.$axios.get(`/api/Article/get/${id}`).then((response) => {
-        this.editNews = response.data;
-        if (this.editNews.Tags) { this.addedTags = this.editNews.Tags.split(','); }
-        $('#editNewsModal').modal('show');
-      }).catch(() => {
-        this.$swal.fire('This news does not exist', '', 'error');
-      })
+      this.$axios
+        .get(`/api/Article/get/${id}`)
+        .then((response) => {
+          this.editNews = response.data;
+          if (this.editNews.Tags) {
+            this.addedTags = this.editNews.Tags.split(",");
+          }
+          $("#editNewsModal").modal("show");
+        })
+        .catch(() => {
+          this.$swal.fire("This news does not exist", "", "error");
+        });
     },
     GetNews() {
-      this.$axios.get('/api/Article/getAll').then((response) => {
-        this.articles = response.data;
-      }).catch(() => {
-        this.$swal.fire('Something went wrong', '', 'error');
-      })
-    }
+      this.$axios
+        .get("/api/Article/getAll")
+        .then((response) => {
+          this.articles = response.data;
+        })
+        .catch(() => {
+          this.$swal.fire("Something went wrong", "", "error");
+        });
+    },
   },
   created() {
     this.GetNews();
   },
-
-}
-
+};
 </script>
 
 <style scoped>
@@ -117,11 +140,10 @@ export default {
   align-items: center;
 }
 
-.leftItems>div {
+.leftItems > div {
   display: inline-flex;
   align-items: center;
   margin-right: 1vh;
-
 }
 
 .image-topBar {
@@ -172,7 +194,6 @@ export default {
   text-align: center;
   font-size: 5rem;
 }
-
 
 .AddText {
   font-size: 2rem;

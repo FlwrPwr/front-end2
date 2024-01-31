@@ -2,22 +2,22 @@
   <div class="customBox">
     <div class="gameStatus">
       <div class="gameButton" style="margin-left: 5vw">Last game</div>
-      <div class="gameButton" style="margin-right: 5vw">Next game</div>
+      <div class="gameButton" style="margin-right: 5vw; color: blue">Next game</div>
     </div>
     <div class="infoBox">
       <div class="infoText" style="margin-left: 5vw">
         <img src="@/assets/images/location.png" alt="Location Icon" class="locationIcon" />
-        STADION
+        Sala Polivalenta Cluj-Napoca
       </div>
       <div class="infoText" style="margin-right: 7.5vw">
         <img src="@/assets/images/clock.png" alt="Clock Icon" class="clockIcon" />
-        ORA
+        14:00
       </div>
     </div>
     <div class="emblemsBox">
       <img
         class="team"
-        src="@/assets/images/emblem.jpg"
+        src="@/assets/echipe/uCluj.png"
         alt="Team 1 Emblem"
         style="margin-left: 5vw"
       />
@@ -29,7 +29,7 @@
         style="margin-right: 5vw"
       />
     </div>
-    <div class="detaliiButton">Detalii</div>
+    <div class="detaliiButton">03 Februarie 2024</div>
   </div>
 </template>
 
@@ -146,10 +146,10 @@ export default {
   color: white;
   font-size: 1rem;
   font-weight: bold;
-  width: 7.5vw;
-  height: 4vh;
+  width: 16vw;
+  height: 3vw;
   border-radius: 10px;
-  background-color: red;
+  background-color: blue;
   margin-top: 2vh;
 }
 </style>

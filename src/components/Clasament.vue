@@ -1,30 +1,35 @@
 <template>
   <div class="customBox">
     <div class="info">
-      <div class="component" style="width: 11.5vw;">#    Team</div>
-      <div class="component" style="width: 3.6vw;">MP</div>
-      <div class="component" style="width: 3.6vw;">W</div>
-      <div class="component" style="width: 3.6vw;">D</div>
-      <div class="component" style="width: 3vw;">L</div>
-      <div class="component" style="width: 3vw;">G</div>
-      <div class="component" style="width: 3vw;">PTS</div>
+      <div class="component" style="width: 11.5vw"># Team</div>
+      <div class="component" style="width: 3.6vw">MP</div>
+      <div class="component" style="width: 3.6vw">W</div>
+      <div class="component" style="width: 3.6vw">D</div>
+      <div class="component" style="width: 3vw">L</div>
+      <div class="component" style="width: 3vw">G</div>
+      <div class="component" style="width: 3vw">PTS</div>
     </div>
-    <div class="matchBox" v-for="(match, index) in matches" :key="index">
-      <div class="matchComponent" style="width: 1vw;">{{ match.number }}</div>
-      <div class="matchComponent" style="width: 10vw;">{{ match.team }}</div>
-      <div class="matchComponent" style="width: 3.5vw;">{{ match.mp }}</div>
-      <div class="matchComponent" style="width: 3.5vw;">{{ match.w }}</div>
-      <div class="matchComponent" style="width: 3.5vw;">{{ match.d }}</div>
-      <div class="matchComponent" style="width: 3vw;">{{ match.l }}</div>
-      <div class="matchComponent" style="width: 3vw;">{{ match.g }}</div>
-      <div class="matchComponent" style="width: 3vw;">{{ match.pts }}</div>
+    <div class="big-box">
+      <div class="matchBox" v-for="(match, index) in matches" :key="index">
+        <div class="matchComponent" style="width: 1vw">{{ match.Id }}</div>
+        <div class="matchComponent" style="width: 1vw">
+          <img style="width: 23px" :src="$utils.GetImageFormat(match.ImgBase64)" alt="" />
+        </div>
+        <div class="matchComponent" style="width: 10vw">{{ match.Name }}</div>
+        <div class="matchComponent" style="width: 3.5vw">{{ match.GamesPlayed }}</div>
+        <div class="matchComponent" style="width: 3.5vw">{{ match.Wins }}</div>
+        <div class="matchComponent" style="width: 3.5vw">{{ match.Draws }}</div>
+        <div class="matchComponent" style="width: 3vw">{{ match.Losses }}</div>
+        <div class="matchComponent" style="width: 3vw">{{ match.Goals }}</div>
+        <div class="matchComponent ps-3" style="width: 3vw">{{ match.Points }}</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Clasament',
+  name: "Clasament",
   props: {
     matches: {
       type: Array,
@@ -47,6 +52,8 @@ export default {
   flex-direction: column;
   padding-top: 5vh;
   color: black;
+  overflow: visible;
+  scroll-behavior: auto;
 }
 
 .info {
@@ -79,5 +86,10 @@ export default {
   border-radius: 20px;
   margin-top: 1vh;
   color: black;
+}
+
+.big-box {
+  overflow: auto;
+  width: 98%;
 }
 </style>

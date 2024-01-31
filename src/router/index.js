@@ -52,12 +52,12 @@ const router = createRouter({
         {
           path: "/Homepage",
           name: "HomepageUser",
-          component: HomePageUserView,
+          component: HomePageAdminView,
         },
         {
           path: "/matches",
           name: "MatchesUser",
-          component: MatchesUserView,
+          component: MatchesAdminView,
         },
         {
           path: "/news",
@@ -91,8 +91,9 @@ const router = createRouter({
           component: NewsPageAdminView,
         },
         {
-          path: "/admin/newsClick",
-          name: "News Click",
+          path: "/admin/newsDetails/:id?",
+          name: "NewsDetails",
+          props: true,
           component: NewsClickAdminView,
         },
         {
